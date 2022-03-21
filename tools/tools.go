@@ -14,28 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package protoutils
+package tools
 
 import (
-	"testing"
-
-	"github.com/stretchr/testify/assert"
+	_ "github.com/golangci/golangci-lint/cmd/golangci-lint"
 )
-
-func TestErrorList_Error(t *testing.T) {
-	test := map[string]interface{}{
-		"SS": []string{"one"},
-		"SM": map[string]string{"yellow": "good"},
-		"IS": []int{3},
-		"IM": map[string]int{"red": 5},
-	}
-	expect := map[string]interface{}{
-		"SS": []interface{}{"one"},
-		"SM": map[string]interface{}{"yellow": "good"},
-		"IS": []interface{}{float64(3)},
-		"IM": map[string]interface{}{"red": float64(5)},
-	}
-	got, err := NewStruct(test)
-	assert.NoError(t, err)
-	assert.Equal(t, expect, got.AsMap())
-}
